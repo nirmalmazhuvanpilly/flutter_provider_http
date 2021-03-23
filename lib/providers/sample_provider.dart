@@ -14,8 +14,13 @@ class SampleProvider with ChangeNotifier {
   }
 
   var initialValue = 0;
-  void initFunctions() {
+  void add() {
     initialValue++;
+    notifyListeners();
+  }
+
+  void diff() {
+    initialValue--;
     notifyListeners();
   }
 
