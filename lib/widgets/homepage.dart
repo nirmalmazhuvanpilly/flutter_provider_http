@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_1/providers/sample_provider.dart';
+
+import 'package:flutter_provider_1/widgets/new_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -24,7 +26,7 @@ class HomePage extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.all(40.0),
                       color: Colors.red,
-                      height: 200,
+                      height: 150,
                       padding: EdgeInsets.all(5),
                       child: Consumer<SampleProvider>(
                         builder: (context, value, child) {
@@ -39,7 +41,9 @@ class HomePage extends StatelessWidget {
                                   "Mobile Number : ${value.sampleModel.contactMobile}"),
                               Text("Initial Data : ${value.initialValue}"),
                               FloatingActionButton(
-                                  onPressed: value.add, child: Icon(Icons.add)),
+                                  heroTag: "btn1",
+                                  onPressed: value.add,
+                                  child: Icon(Icons.add)),
                             ],
                           );
                         },
@@ -54,10 +58,20 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => NewSreen(),
+                          ),
+                        );
+                      },
+                      child: Text("Go to Next Page"),
+                    ),
                     Container(
                       margin: EdgeInsets.all(40.0),
                       color: Colors.red,
-                      height: 200,
+                      height: 150,
                       padding: EdgeInsets.all(5),
                       child: Consumer<SampleProvider>(
                         builder: (context, value, child) {
@@ -72,6 +86,7 @@ class HomePage extends StatelessWidget {
                                   "Mobile Number : ${value.sampleModel.contactMobile}"),
                               Text("Initial Data : ${value.initialValue}"),
                               FloatingActionButton(
+                                  heroTag: "btn2",
                                   onPressed: value.diff,
                                   child: Icon(Icons.remove)),
                             ],
