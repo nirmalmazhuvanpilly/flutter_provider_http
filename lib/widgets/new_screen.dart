@@ -6,12 +6,34 @@ class NewSreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("++++++++++++++++++++++++++++++++");
-    Provider.of<SampleProvider>(context, listen: false);
+    final valueScreen = Provider.of<SampleProvider>(context, listen: false);
     return Scaffold(
+      appBar: AppBar(
+        title: Text("New Page"),
+      ),
+      // body: Center(
+      //   child: Consumer<SampleProvider>(
+      //     builder: (context, value, child) => Text(
+      //       value.initialValue.toString(),
+      //       style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+      //     ),
+      //   ),
+      // ),
       body: Center(
-        child: Consumer<SampleProvider>(
-            builder: (context, value, child) =>
-                Text(value.initialValue.toString())),
+        child: Column(
+          children: [
+            Consumer<SampleProvider>(
+              builder: (context, value, child) => Text(
+                valueScreen.initialValue.toString(),
+                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+              ),
+            ),
+            IconButton(
+              onPressed: valueScreen.add,
+              icon: Icon(Icons.add),
+            ),
+          ],
+        ),
       ),
     );
   }
